@@ -14,7 +14,7 @@ const bgParticlesConfig = {
       type: "circle",
       stroke: {
         width: 0,
-        color: "#000000"
+        color: "#020202"
       },
       polygon: {
         nb_sides: 5
@@ -42,7 +42,7 @@ const bgParticlesConfig = {
     },
     line_linked: {
       enable: true,
-      distance: 100,
+      distance: 120,
       color: "#020202",
       opacity: 0.4,
       width: 2
@@ -63,21 +63,20 @@ const bgParticlesConfig = {
     }
   },
   interactivity: {
-    detect_on: "canvas",
+    detect_on: "window",
     events: {
       onhover: {
         enable: true,
-        mode: "grab"
+        mode: "repulse"
       },
       onclick: {
-        enable: true,
-        mode: "push"
+        enable: false
       },
       resize: true
     },
     modes: {
       grab: {
-        distance: 800,
+        distance: 200,
         line_linked: {
           opacity: 1
         }
@@ -90,7 +89,7 @@ const bgParticlesConfig = {
         speed: 3
       },
       repulse: {
-        distance: 400,
+        distance: 150,
         duration: 0.4
       },
       push: {
@@ -103,6 +102,8 @@ const bgParticlesConfig = {
   },
   retina_detect: true
 };
+
+
 
 particlesJS('mainBg', bgParticlesConfig, () => console.log("rodou"));
 

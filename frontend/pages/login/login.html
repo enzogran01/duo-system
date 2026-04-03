@@ -8,28 +8,29 @@
     <link rel="stylesheet" href="../../styles/vendor/output.css"> <!-- tailwind -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"> <!-- aos css -->
 </head>
-<body class="h-screen w-screen bg-[#fbf4ea]">
-    <nav class="w-screen fixed bg-[#e9ddcb]" data-aos="fade-down" data-aos-offset="10" data-aos-delay="50" data-aos-duration="1000">
-        <a class="text-2xl" href="/frontend/pages/login/login.html"><h1>DUO SYSTEM</h1></a>
+<body class="h-screen w-screen bg-beige1">
+    <nav class="p-4 w-screen fixed bg-beige2" data-aos="fade-down" data-aos-offset="10" data-aos-delay="50" data-aos-duration="1000">
+        <a class="text-xl md:text-2xl -text-bebas" href="/frontend/pages/login/login.html"><h1>DUO SYSTEM</h1></a>
     </nav>
 
-    <div id="mainBg" class="absolute inset-0 -z-10"></div>
+    <div id="mainBg" class="absolute inset-0 -z-10" data-aos="fade-in" data-aos-offset="10" data-aos-delay="50" data-aos-duration="1000"></div>
 
     <main class="w-full h-full flex items-center justify-center">
-        <div class="w-[25%] border-2 p-6 rounded-lg bg-[#383838] text-white"  data-aos="fade-up" data-aos-offset="10" data-aos-delay="100" data-aos-duration="1000">
+        <div class="w-[75%] md:w-[25%] p-6 rounded-lg bg-gray1 text-white"  data-aos="fade-up" data-aos-offset="10" data-aos-delay="100" data-aos-duration="1000">
 
-            <p class="w-full text-center">Boas-vindas de volta.</p>
+            <p class="w-full text-center text-lg"> Bem-vinda de volta! </p>
+            <p class="w-full text-center text-base text-gray3"> Para continuar, por favor faça login. </p>
 
             <form action="/" method="POST" class="w-full">
                 <div class="mt-8">
-                    <input placeholder="nome@email.com" autofocus type="email" name="email" id="email" class="w-full border rounded px-3 py-2 outline-none">
+                    <input placeholder="nome@email.com" autofocus type="email" name="email" id="email" class="w-full border-b rounded-t px-3 py-2 outline-none focus:bg-gray2">
                 </div>
                 <div class="mt-2">
-                    <input placeholder="Sua senha" type="password" name="password" id="password" class="w-full border rounded px-3 py-2 outline-none">
+                    <input placeholder="Sua senha" type="password" name="password" id="password" class="w-full border-b rounded-t px-3 py-2 outline-none focus:bg-gray2">
                 </div>
 
                 <div class="w-full items-center justify-center mt-6">
-                    <button type="submit" class="text-center w-full p-4 rounded-md border transition-all duration-100 cursor-pointer bg-[#383838] active:bg-white active:text-[#2a2a2a] hover:-translate-y-1">Login</button>
+                    <button type="submit" class="text-center w-full p-4 rounded-md transition-all duration-100 cursor-pointer bg-gray2 active:bg-beige1 active:text-gray2 hover:-translate-y-1">Login</button>
                 </div>
             </form>
         </div>
