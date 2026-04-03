@@ -26,12 +26,12 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --text-bebas: 'Bebas', sans-serif;
     --color-beige1: #fbf4ea;
     --color-beige2: #e9ddcb;
     --color-gray1: #383838;
     --color-gray2: #2a2a2a;
     --color-gray3: #c9c9c9;
+    --color-gray4: #1f1f1f;
   }
 }
 @layer base {
@@ -189,11 +189,41 @@
   .fixed {
     position: fixed;
   }
+  .relative {
+    position: relative;
+  }
   .static {
     position: static;
   }
   .inset-0 {
     inset: calc(var(--spacing) * 0);
+  }
+  .-top-\[50\%\] {
+    top: calc(50% * -1);
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .top-1 {
+    top: calc(var(--spacing) * 1);
+  }
+  .top-1\/2 {
+    top: calc(1 / 2 * 100%);
+  }
+  .top-20 {
+    top: calc(var(--spacing) * 20);
+  }
+  .top-\[20\%\] {
+    top: 20%;
+  }
+  .top-\[25\%\] {
+    top: 25%;
+  }
+  .top-\[50\%\] {
+    top: 50%;
+  }
+  .right-2 {
+    right: calc(var(--spacing) * 2);
   }
   .-z-10 {
     z-index: calc(10 * -1);
@@ -218,9 +248,6 @@
   }
   .h-screen {
     height: 100vh;
-  }
-  .w-\[25\%\] {
-    width: 25%;
   }
   .w-\[75\%\] {
     width: 75%;
@@ -264,8 +291,8 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
-  .bg-beige1 {
-    background-color: var(--color-beige1);
+  .bg-\[\#020202\] {
+    background-color: #020202;
   }
   .bg-beige2 {
     background-color: var(--color-beige2);
@@ -275,6 +302,15 @@
   }
   .bg-gray2 {
     background-color: var(--color-gray2);
+  }
+  .bg-gray3 {
+    background-color: var(--color-gray3);
+  }
+  .bg-gray4 {
+    background-color: var(--color-gray4);
+  }
+  .bg-transparent {
+    background-color: transparent;
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -294,9 +330,8 @@
   .text-left {
     text-align: left;
   }
-  .text-2xl {
-    font-size: var(--text-2xl);
-    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  .align-middle {
+    vertical-align: middle;
   }
   .text-base {
     font-size: var(--text-base);
@@ -366,21 +401,20 @@
       color: var(--color-gray2);
     }
   }
-  .sm\:text-2xl {
-    @media (width >= 40rem) {
-      font-size: var(--text-2xl);
-      line-height: var(--tw-leading, var(--text-2xl--line-height));
-    }
-  }
-  .md\:w-\[25\%\] {
+  .md\:w-\[50\%\] {
     @media (width >= 48rem) {
-      width: 25%;
+      width: 50%;
     }
   }
   .md\:text-2xl {
     @media (width >= 48rem) {
       font-size: var(--text-2xl);
       line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+  }
+  .lg\:w-\[25\%\] {
+    @media (width >= 64rem) {
+      width: 25%;
     }
   }
 }
