@@ -1,7 +1,8 @@
+// === PARTICLES.JS CONFIG ===
 const bgParticlesConfig = {
   particles: {
     number: {
-      value: 100,
+      value: 150,
       density: {
         enable: true,
         value_area: 800
@@ -89,7 +90,7 @@ const bgParticlesConfig = {
         speed: 3
       },
       repulse: {
-        distance: 150,
+        distance: 100,
         duration: 0.4
       },
       push: {
@@ -102,9 +103,71 @@ const bgParticlesConfig = {
   },
   retina_detect: true
 };
-
-
-
 particlesJS('mainBg', bgParticlesConfig, () => console.log("rodou"));
 
+// === ANIMATE ON SCROLL LIB INIT ===
 AOS.init();
+
+// === FUNCTIONS ===
+class Validate {
+  constructor(input, type) {
+    this.input = input;
+    this.type = type;
+    this.validadeInput();
+  }
+
+  validadeInput() {
+    let errors = document.querySelectorAll('.error-msg');
+    errors.forEach(error => {
+      error.remove();
+    });
+
+    const cleanedInput = this.cleanUp(this.input.value);
+
+    if (this.type === 'email') {
+      const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!regex.test(cleanedInput)) { 
+        Error.appendErrorMsg("E-mail inválido.", this.input);
+        return;
+      }
+      return;
+    }
+    if (this.type === 'password') {
+      if (cleanedInput.length < 8) {
+        Error.appendErrorMsg("A senha deve ter no mínimo 8 caracteres.", this.input);
+        return;
+      }
+      return;
+    }
+  }
+
+  cleanUp() {
+    if (this.type === 'email') return this.input.value.trim().toLowerCase();
+    if (this.type === 'password') return this.input.value.trim();
+    return;
+  }
+}
+
+class Error {
+  static formatElement (errorMsg) {
+    const error = document.createElement("span");
+    error.textContent = errorMsg;
+    error.classList.add('text-red-300', 'text-left', 'text-sm', 'w-full', 'error-msg');
+    return error;
+  }
+
+  static appendErrorMsg(errorMsg, element) {
+    const error = Error.formatElement(errorMsg);
+    element.insertAdjacentElement("afterend", error);
+  }
+}
+
+// === HTML ELEMENTS ===
+
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+
+// === EVENTLISTENERS ===
+
+email.addEventListener("input", () => new Validate(email, "email"));
+password.addEventListener("input", () => new Validate(password, "password"));
