@@ -8,6 +8,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-300: oklch(80.8% 0.114 19.571);
+    --color-red-400: oklch(70.4% 0.191 22.216);
     --color-white: #fff;
     --spacing: 0.25rem;
     --text-sm: 0.875rem;
@@ -198,29 +199,8 @@
   .inset-0 {
     inset: calc(var(--spacing) * 0);
   }
-  .-top-\[50\%\] {
-    top: calc(50% * -1);
-  }
-  .top-0 {
-    top: calc(var(--spacing) * 0);
-  }
-  .top-1 {
-    top: calc(var(--spacing) * 1);
-  }
-  .top-1\/2 {
-    top: calc(1 / 2 * 100%);
-  }
-  .top-20 {
-    top: calc(var(--spacing) * 20);
-  }
   .top-\[20\%\] {
     top: 20%;
-  }
-  .top-\[25\%\] {
-    top: 25%;
-  }
-  .top-\[50\%\] {
-    top: 50%;
   }
   .right-2 {
     right: calc(var(--spacing) * 2);
@@ -243,14 +223,17 @@
   .table {
     display: table;
   }
+  .h-dvh {
+    height: 100dvh;
+  }
   .h-full {
     height: 100%;
   }
-  .h-screen {
-    height: 100vh;
-  }
   .w-\[75\%\] {
     width: 75%;
+  }
+  .w-dvw {
+    width: 100dvw;
   }
   .w-full {
     width: 100%;
@@ -291,9 +274,6 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
-  .bg-\[\#020202\] {
-    background-color: #020202;
-  }
   .bg-beige2 {
     background-color: var(--color-beige2);
   }
@@ -303,14 +283,11 @@
   .bg-gray2 {
     background-color: var(--color-gray2);
   }
-  .bg-gray3 {
-    background-color: var(--color-gray3);
-  }
   .bg-gray4 {
     background-color: var(--color-gray4);
   }
-  .bg-transparent {
-    background-color: transparent;
+  .bg-red-400 {
+    background-color: var(--color-red-400);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -329,9 +306,6 @@
   }
   .text-left {
     text-align: left;
-  }
-  .align-middle {
-    vertical-align: middle;
   }
   .text-base {
     font-size: var(--text-base);

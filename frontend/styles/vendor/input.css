@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@source "../../pages/**/*.ejs";
+
 @font-face {
   font-family: 'Bebas';
   src: url('../../assets/fonts/Bebas_Neue/BebasNeue-Regular.ttf') format('truetype');

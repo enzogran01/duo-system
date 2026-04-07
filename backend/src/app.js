@@ -1,9 +1,15 @@
 const express = require('express');
+const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 const app = express();
 const session = require('express-session');
-const route = require('./routes/routes');
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../../frontend/pages'));
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use(session({
   secret: 'la-BskxAS_c9kc0-9cASF20u__cjoias',
   resave: false,
@@ -18,5 +24,7 @@ app.use(session({
 }));
 
 // rotas
-const userRoutes = require('./routes/userRoutes');
-app.use('/', route);
+const route = require('./routes/routes');
+app.use(route);
+
+module.exports = app;
