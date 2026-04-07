@@ -83,9 +83,15 @@ function switchButtonSvg(btn) {
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const revealPasswordBtn = document.getElementById("revealPasswordBtn");
+const formLogin = document.getElementById("formLogin");
 
 // === EVENTLISTENERS ===
 
 email.addEventListener("input", () => new Validate(email, "email"));
 password.addEventListener("input", () => new Validate(password, "password"));
 revealPasswordBtn.addEventListener("click", () => { revealPassword(password) });
+
+formLogin.addEventListener("submit", e => {
+  e.preventDefault();
+  
+})

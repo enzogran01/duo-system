@@ -1,4 +1,3 @@
 exports.login = (req, res, next) => {
-    console.log('Tentando renderizar: login/login');
-    res.render('login/login');
+    res.render('login/login', { pageTitle: " | Login", script: "login.js" });
 }

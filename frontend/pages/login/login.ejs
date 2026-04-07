@@ -1,43 +1,27 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUO System | Login</title>
-    <link rel="stylesheet" href="/styles/global.css"> <!-- global -->
-    <link rel="stylesheet" href="/styles/vendor/output.css"> <!-- tailwind -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"> <!-- aos css -->
-</head>
-<body class="h-dvh w-dvw bg-gray4">
-    <div id="mainBg" class="absolute inset-0 -z-10" data-aos="fade-in" data-aos-offset="10" data-aos-delay="50" data-aos-duration="1000"></div>
-    
-    <nav class="p-4 w-screen fixed bg-beige2" data-aos="fade-down" data-aos-offset="10" data-aos-delay="50" data-aos-duration="1000">
-        <a class="text-xl md:text-2xl" href="/"><h1>DUO SYSTEM</h1></a>
-    </nav>
+<%- include('../includes/head') %>
 
     <main class="w-full h-full flex items-center justify-center">
-        <div class="w-[75%] md:w-[50%] lg:w-[25%] p-6 rounded-lg bg-gray1 text-white"  data-aos="fade-up" data-aos-offset="10" data-aos-delay="100" data-aos-duration="1000">
+        <div class="w-[75%] md:w-[50%] lg:w-[25%] p-6 rounded-lg  text-white"  data-aos="fade-up" data-aos-offset="10" data-aos-delay="100" data-aos-duration="1000">
 
             <p class="w-full text-center text-lg"> Bem-vinda de volta! </p>
-            <p class="w-full text-center text-base text-gray3"> Para continuar, por favor faça login. </p>
+            <p class="w-full text-center text-base "> Para continuar, por favor faça login. </p>
 
-            <form action="/" method="POST" class="w-full">
+            <form id="formLogin" action="/" method="POST" class="w-full">
                 <div class="mt-8 input-div">
-                    <input placeholder="nome@email.com" autofocus type="email" name="email" id="email" required class="w-full border-b rounded-t px-3 py-2 outline-none focus:bg-gray2">
+                    <input placeholder="Seu email" autofocus type="email" name="email" id="email" required class="w-full border-b rounded-t px-3 py-2 outline-none focus:">
                 </div>
                 <div class="mt-2 relative input-div">
-                    <input placeholder="Sua senha" type="password" name="password" id="password" maxlength="44" minlength="8" required class="w-full border-b rounded-t px-3 py-2 outline-none focus:bg-gray2">
+                    <input placeholder="Sua senha" type="password" name="password" id="password" maxlength="44" minlength="8" required class="w-full border-b rounded-t px-3 py-2 outline-none focus:">
                     <button id="revealPasswordBtn" class="cursor-pointer absolute right-2 top-[20%]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.58 12c0 1.98-1.6 3.58-3.58 3.58S8.42 13.98 8.42 12s1.6-3.58 3.58-3.58 3.58 1.6 3.58 3.58Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 20.27c3.53 0 6.82-2.08 9.11-5.68.9-1.41.9-3.78 0-5.19-2.29-3.6-5.58-5.68-9.11-5.68-3.53 0-6.82 2.08-9.11 5.68-.9 1.41-.9 3.78 0 5.19 2.29 3.6 5.58 5.68 9.11 5.68Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
                 </div>
 
                 <div class="w-full items-center justify-center mt-6">
-                    <button type="submit" class="text-center w-full p-4 rounded-md transition-all duration-100 cursor-pointer bg-gray2 active:bg-beige1 active:text-gray2 hover:-translate-y-1">Login</button>
+                    <button type="submit" class="text-center w-full p-4 rounded-md transition-all duration-100 cursor-pointer  active: active: hover:-translate-y-1">Login</button>
                 </div>
             </form>
         </div>
     </main>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="/scripts/login.js"></script>
-</body>
-</html>
+
+
+<%- include('../includes/footer') %>
