@@ -18,14 +18,13 @@
 }
 
 @theme {
-    --text-bebas: 'Bebas', sans-serif;
-    --text-inter: 'Inter', sans-serif;
-    --text-russo: 'Russo', sans-serif;
+    --font-bebas: 'Bebas', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --font-russo: 'Russo', sans-serif;
 
-    --color-beige1: #fbf4ea;
-    --color-beige2: #e9ddcb;
-    --color-gray1: #383838;
-    --color-gray2: #2a2a2a;
-    --color-gray3: #c9c9c9;
-    --color-gray4: #1f1f1f;
+    --color-primary: #6C5A3F;
+    --color-secondary: #CBC0B1;
+    --color-tertiary: #FBF4EA;
+    --color-action: #120309;
+    --color-neutral: #EFEFEF;
 }
