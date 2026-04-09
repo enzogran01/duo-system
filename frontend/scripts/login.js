@@ -90,8 +90,3 @@ const formLogin = document.getElementById("formLogin");
 email.addEventListener("input", () => new Validate(email, "email"));
 password.addEventListener("input", () => new Validate(password, "password"));
 revealPasswordBtn.addEventListener("click", () => { revealPassword(password) });
-
-formLogin.addEventListener("submit", e => {
-  e.preventDefault();
-  
-})
