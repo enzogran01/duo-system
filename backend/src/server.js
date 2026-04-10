@@ -7,6 +7,9 @@ const app = require('./app');
 
 const PORT = process.env.PORT;
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+app.on('pronto', () => {
+    app.listen(PORT, () => {
+        console.log("http://localhost:3000");
+        console.log("Servidor executando na porta 3000.");
+    });
 });

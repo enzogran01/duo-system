@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUO System<%= pageTitle %></title>
+    <title>DUO System<%= pageTitle || '' %></title>
     <link rel="stylesheet" href="/styles/global.css"> <!-- global -->
     <link rel="stylesheet" href="/styles/vendor/output.css"> <!-- tailwind -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"> <!-- aos css -->
@@ -11,6 +11,6 @@
 <body class="h-dvh w-dvw bg-neutral">
     <div id="mainBg" class="absolute inset-0 -z-10 font-russo" data-aos="fade-in" data-aos-offset="10" data-aos-delay="50" data-aos-duration="1000"></div>
     
-    <nav class="p-4 w-screen fixed bg-primary text-white" data-aos="fade-down" data-aos-offset="10" data-aos-delay="50" data-aos-duration="1000">
+    <nav class="p-4 w-screen fixed bg-primary text-white flex justify-between" data-aos="fade-down" data-aos-offset="10" data-aos-delay="50" data-aos-duration="1000">
         <a class="text-xl md:text-2xl" href="/"><h1>DUO SYSTEM</h1></a>
     </nav>

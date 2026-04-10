@@ -11,6 +11,7 @@ class Validate {
   constructor(input, type) {
     this.input = input;
     this.type = type;
+    this.error = false;
     this.validadeInput();
   }
 
@@ -25,15 +26,17 @@ class Validate {
     if (this.type === 'email') {
       const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!regex.test(cleanedInput)) { 
-        Error.appendErrorMsg("E-mail inválido.", this.input);
-        return;
+        FormError.appendErrorMsg("E-mail inválido.", this.input);
+        this.error = true;
+        return this.error;
       }
       return;
     }
     if (this.type === 'password') {
       if (cleanedInput.length < 8) {
-        Error.appendErrorMsg("A senha deve ter no mínimo 8 caracteres.", this.input);
-        return;
+        FormError.appendErrorMsg("A senha deve ter no mínimo 8 caracteres.", this.input);
+        this.error = true;
+        return this.error;
       }
       return;
     }
@@ -46,8 +49,8 @@ class Validate {
   }
 }
 
-class Error {
-  static formatElement (errorMsg) {
+class FormError {
+  static formatElement(errorMsg) {
     const error = document.createElement("span");
     error.textContent = errorMsg;
     error.classList.add('text-red-600', 'text-left', 'text-sm', 'w-full', 'error-msg');
@@ -55,7 +58,7 @@ class Error {
   }
 
   static appendErrorMsg(errorMsg, element) {
-    const error = Error.formatElement(errorMsg);
+    const error = FormError.formatElement(errorMsg);
     element.insertAdjacentElement("afterend", error);
   }
 }
@@ -78,6 +81,21 @@ function switchButtonSvg(btn) {
   return btn.innerHTML = showSvg;
 }
 
+async function handleLogin(e) {
+  e.preventDefault();
+
+  const validateEmail = new Validate(email, "email");
+  const validatePassword = new Validate(password, "password");
+
+  if (validateEmail.error || validatePassword.error) {
+    FormError.appendErrorMsg("Erro ao fazer login.", formLogin);
+    return;
+  }
+
+  formLogin.removeEventListener("submit", handleLogin);
+  formLogin.submit();
+}
+
 // === HTML ELEMENTS ===
 
 const email = document.getElementById("email");
@@ -90,3 +108,4 @@ const formLogin = document.getElementById("formLogin");
 email.addEventListener("input", () => new Validate(email, "email"));
 password.addEventListener("input", () => new Validate(password, "password"));
 revealPasswordBtn.addEventListener("click", () => { revealPassword(password) });
+formLogin.addEventListener("submit", handleLogin);

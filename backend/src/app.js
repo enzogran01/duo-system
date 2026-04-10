@@ -4,14 +4,23 @@ const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
 const session = require('express-session');
+const mongoose = require('mongoose');
+mongoose.connect(process.env.CONNECTIONSTRING)
+    .then(() => {
+        app.emit('pronto');
+    })
+    .catch(e => console.log(e));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../../frontend/pages'));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+const MongoStore = require('connect-mongo').default;
 app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use(session({
   secret: 'la-BskxAS_c9kc0-9cASF20u__cjoias',
+  store: MongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
   resave: false,
   saveUninitialized: false,
   cookie: {

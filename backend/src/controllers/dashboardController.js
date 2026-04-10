@@ -1,3 +1,3 @@
-exports.home = (req, res) => {
-    res.send("tamo na dashboard");
+exports.index = (req, res) => {
+    res.render('dashboard/dashboard', { pageTitle: " | Home", script: "dashboard.js" });
 }
