@@ -3,24 +3,30 @@
 @source "../../pages/**/*.ejs";
 
 @font-face {
-  font-family: 'Bebas';
-  src: url('../../assets/fonts/Bebas_Neue/BebasNeue-Regular.ttf') format('truetype');
+  font-family: "Bebas";
+  src: url("../../assets/fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: url('../../assets/fonts/Inter/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("../../assets/fonts/Inter-VariableFont_opsz\,wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Russo';
-    src: url('../../assets/fonts/Russo_One/RussoOne-Regular.ttf') format('truetype');
+  font-family: "Russo";
+  src: url("../../assets/fonts/RussoOne-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @theme {
-    --font-bebas: 'Bebas', sans-serif;
-    --font-inter: 'Inter', sans-serif;
-    --font-russo: 'Russo', sans-serif;
+    --font-bebas: 'Bebas', sans-serif, system-ui;
+    --font-inter: 'Inter', sans-serif, system-ui;
+    --font-russo: 'Russo', sans-serif, system-ui;
 
     --color-primary: #6C5A3F;
     --color-secondary: #CBC0B1;
