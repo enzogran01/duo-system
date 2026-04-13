@@ -5,18 +5,13 @@ dotenv.config();
 const app = express();
 const session = require('express-session');
 const mongoose = require('mongoose');
-mongoose.connect(process.env.CONNECTIONSTRING)
-    .then(() => {
-        app.emit('pronto');
-    })
-    .catch(e => console.log(e));
-
+const flash = require('connect-flash');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../../frontend/pages'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const MongoStore = require('connect-mongo').default;
+const { MongoStore } = require('connect-mongo');
 app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use(session({
   secret: 'la-BskxAS_c9kc0-9cASF20u__cjoias',
@@ -31,9 +26,21 @@ app.use(session({
     sameSite: 'lax'
   }
 }));
+app.use(flash());
 
 // rotas
 const route = require('./routes/routes');
 app.use(route);
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send('Erro interno do servidor');
+});
+
+mongoose.connect(process.env.CONNECTIONSTRING)
+    .then(() => {
+        app.emit('pronto');
+    })
+    .catch(e => console.log(e));
 
 module.exports = app;

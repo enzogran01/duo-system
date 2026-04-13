@@ -6,6 +6,12 @@
             <p class="w-full text-center text-lg"> Bem-vinda de volta! </p>
             <p class="w-full text-center text-base text-neutral-800 "> Para continuar, por favor faça login. </p>
 
+            <% if (errors && errors.length > 0) { %>
+                <div class="w-full mb-4 mt-2 p-3 rounded-md bg-red-100 text-red-600 text-sm text-center">
+                    Conta não encontrada, verifique o email e a senha e tente novamente.
+                </div>
+            <% } %>
+
             <form id="formLogin" action="/" method="POST" class="w-full">
                 <div class="mt-8 input-div">
                     <input placeholder="Seu email" autofocus type="email" name="email" id="email" required class="w-full border-b rounded-t px-3 py-2 outline-none focus:bg-neutral">
