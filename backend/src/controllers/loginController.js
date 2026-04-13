@@ -21,7 +21,9 @@ exports.login = async (req, res) => {
 }
 
 exports.index = (req, res) => {
+    if (req.session.user) return res.redirect('/dashboard');
+    
     const errors = req.session.loginErrors || [];
     req.session.loginErrors = [];
-    res.render('login/login', { pageTitle: " | Login", script: "login.js", errors });
+    res.render('login/login', { pageTitle: " | Login", script: "login.js", errors, user: null });
 }
