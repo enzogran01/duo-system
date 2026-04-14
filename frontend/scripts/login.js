@@ -1,11 +1,3 @@
-// === ANIMATE ON SCROLL LIB INIT ===
-window.addEventListener('load', () => {
-    AOS.init({
-        once: true,     // se a animação deve acontecer apenas uma vez
-        mirror: false,  // se os elementos devem animar ao scrollar para cima também
-    });
-});
-
 // === FUNCTIONS ===
 class Validate {
   constructor(input, type) {
