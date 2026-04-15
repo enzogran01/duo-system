@@ -12,6 +12,7 @@ route.post('/', loginController.login);
 
 // rotas de dashboard
 route.get('/dashboard', loginRequired, dashboardController.index);
+route.post('/dashboard', loginRequired, dashboardController.register);
 
 // rotas de página 404
 route.get('/error', errorPageController.index);

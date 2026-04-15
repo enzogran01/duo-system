@@ -16,7 +16,7 @@ exports.login = async (req, res) => {
         req.session.save(() => res.redirect("/dashboard"));
     } catch (e) {
         console.log(e);
-        return res.redirect('/404');
+        return res.redirect('/error');
     }
 }
 
