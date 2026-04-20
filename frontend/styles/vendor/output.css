@@ -391,8 +391,56 @@
   .text-action {
     color: var(--color-action);
   }
+  .text-action\/0 {
+    color: color-mix(in srgb, #120309 0%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-action) 0%, transparent);
+    }
+  }
+  .text-action\/1 {
+    color: color-mix(in srgb, #120309 1%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-action) 1%, transparent);
+    }
+  }
+  .text-action\/10 {
+    color: color-mix(in srgb, #120309 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-action) 10%, transparent);
+    }
+  }
+  .text-action\/50 {
+    color: color-mix(in srgb, #120309 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-action) 50%, transparent);
+    }
+  }
+  .text-action\/60 {
+    color: color-mix(in srgb, #120309 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-action) 60%, transparent);
+    }
+  }
   .text-black {
     color: var(--color-black);
+  }
+  .text-black\/0 {
+    color: color-mix(in srgb, #000 0%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-black) 0%, transparent);
+    }
+  }
+  .text-black\/50 {
+    color: color-mix(in srgb, #000 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-black) 50%, transparent);
+    }
+  }
+  .text-black\/60 {
+    color: color-mix(in srgb, #000 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-black) 60%, transparent);
+    }
   }
   .text-neutral-800 {
     color: var(--color-neutral-800);
@@ -400,11 +448,20 @@
   .text-red-600 {
     color: var(--color-red-600);
   }
+  .text-tertiary {
+    color: var(--color-tertiary);
+  }
   .text-white {
     color: var(--color-white);
   }
+  .italic {
+    font-style: italic;
+  }
   .underline {
     text-decoration-line: underline;
+  }
+  .decoration-2 {
+    text-decoration-thickness: 2px;
   }
   .outline {
     outline-style: var(--tw-outline-style);

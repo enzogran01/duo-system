@@ -27,8 +27,8 @@ class Atendimento {
         this.atendimento = await AtendimentoModel.create(this.body);
     }
 
-    async delete(id) {
-        this.atendimento = await AtendimentoModel.deleteOne(id);
+    static async deleteById(id) {
+        return await AtendimentoModel.findByIdAndDelete(id);
     }
 
     valida() {
