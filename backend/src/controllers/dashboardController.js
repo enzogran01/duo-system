@@ -1,5 +1,4 @@
 const Atendimento = require("../models/AtendimentoModel");
-const { login } = require("./loginController");
 
 exports.index = (req, res) => {
     res.render('dashboard/dashboard', { 
