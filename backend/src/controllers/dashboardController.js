@@ -1,11 +1,18 @@
 const Atendimento = require("../models/AtendimentoModel");
 
-exports.index = (req, res) => {
-    res.render('dashboard/dashboard', { 
-        pageTitle: " | Home", 
-        script: "dashboard.js",
-        user: req.session.user
-    });
+exports.index = async (req, res) => {
+    try {
+        const atendimentos = await Atendimento.getAll();
+        res.render('dashboard/dashboard', { 
+            pageTitle: " | Home", 
+            script: "dashboard.js",
+            user: req.session.user,
+            atendimentos
+        });
+    } catch (e) {
+        console.log(e);
+        res.redirect('/error');
+    }
 };
 
 exports.register = async (req, res) => {{
