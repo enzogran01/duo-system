@@ -13,6 +13,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-md: 28rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
@@ -208,6 +209,9 @@
   .right-2 {
     right: calc(var(--spacing) * 2);
   }
+  .m-auto {
+    margin: auto;
+  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -246,6 +250,9 @@
   }
   .w-screen {
     width: 100vw;
+  }
+  .max-w-md {
+    max-width: var(--container-md);
   }
   .min-w-150 {
     min-width: calc(var(--spacing) * 150);
@@ -391,44 +398,8 @@
   .text-action {
     color: var(--color-action);
   }
-  .text-action\/0 {
-    color: color-mix(in srgb, #120309 0%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-action) 0%, transparent);
-    }
-  }
-  .text-action\/1 {
-    color: color-mix(in srgb, #120309 1%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-action) 1%, transparent);
-    }
-  }
-  .text-action\/10 {
-    color: color-mix(in srgb, #120309 10%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-action) 10%, transparent);
-    }
-  }
-  .text-action\/50 {
-    color: color-mix(in srgb, #120309 50%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-action) 50%, transparent);
-    }
-  }
-  .text-action\/60 {
-    color: color-mix(in srgb, #120309 60%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-action) 60%, transparent);
-    }
-  }
   .text-black {
     color: var(--color-black);
-  }
-  .text-black\/0 {
-    color: color-mix(in srgb, #000 0%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-black) 0%, transparent);
-    }
   }
   .text-black\/50 {
     color: color-mix(in srgb, #000 50%, transparent);
@@ -436,20 +407,11 @@
       color: color-mix(in oklab, var(--color-black) 50%, transparent);
     }
   }
-  .text-black\/60 {
-    color: color-mix(in srgb, #000 60%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-black) 60%, transparent);
-    }
-  }
   .text-neutral-800 {
     color: var(--color-neutral-800);
   }
   .text-red-600 {
     color: var(--color-red-600);
-  }
-  .text-tertiary {
-    color: var(--color-tertiary);
   }
   .text-white {
     color: var(--color-white);
@@ -459,9 +421,6 @@
   }
   .underline {
     text-decoration-line: underline;
-  }
-  .decoration-2 {
-    text-decoration-thickness: 2px;
   }
   .outline {
     outline-style: var(--tw-outline-style);
@@ -493,6 +452,14 @@
     --tw-outline-style: none;
     outline-style: none;
   }
+  .backdrop\:bg-black\/50 {
+    &::backdrop {
+      background-color: color-mix(in srgb, #000 50%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
+      }
+    }
+  }
   .hover\:-translate-y-0\.5 {
     &:hover {
       @media (hover: hover) {
@@ -515,16 +482,6 @@
         --tw-scale-x: 110%;
         --tw-scale-y: 110%;
         --tw-scale-z: 110%;
-        scale: var(--tw-scale-x) var(--tw-scale-y);
-      }
-    }
-  }
-  .hover\:scale-120 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-scale-x: 120%;
-        --tw-scale-y: 120%;
-        --tw-scale-z: 120%;
         scale: var(--tw-scale-x) var(--tw-scale-y);
       }
     }
