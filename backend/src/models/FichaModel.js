@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const FichaSchema = new mongoose.Schema({
     nome: { type: String, required: true },
-    data_nascimento: { type: Date, required: false },
-    profissao: { type: String, required: false },
-    telefone: { type: long, required: true },
-    peso: { type: int32, required: false },
-    altura: { type: decimal128, required: false },
-    medida: { type: decimal128, required: false },
-    pele: { type: String, required: false }
+    data_nascimento: { type: Date },
+    profissao: { type: String },
+    telefone: { type: String, required: true },
+    peso: { type: Number },
+    altura: { type: Number },
+    medida: { type: Number },
+    pele: { type: String }
 });
 
 const FichaModel = new mongoose.model('Ficha', FichaSchema);

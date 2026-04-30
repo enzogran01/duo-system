@@ -5,6 +5,7 @@ const loginController = require('../controllers/loginController');
 const dashboardController = require('../controllers/dashboardController');
 const errorPageController = require('../controllers/errorPageController');
 const logoutController = require('../controllers/logoutController');
+const fichaController = require('../controllers/fichaController');
 
 // rotas de login
 route.get('/', loginController.index);
@@ -18,5 +19,10 @@ route.get('/error', errorPageController.index);
 
 // rotas de logout
 route.get('/logout', loginRequired, logoutController.index);
+
+// rotas de ficha
+route.post('/ficha', loginRequired, fichaController.register);
+route.get('/ficha/delete/:id', loginRequired, fichaController.delete);
+route.post('/ficha/edit/:id', loginRequired, fichaController.update);
 
 module.exports = route;
