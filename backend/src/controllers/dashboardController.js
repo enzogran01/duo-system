@@ -1,5 +1,3 @@
-const Atendimento = require("../models/AtendimentoModel");
-
 exports.index = async (req, res) => {
     try {
         const atendimentos = await Atendimento.getAll();
