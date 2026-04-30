@@ -51,3 +51,5 @@ class Ficha {
         }
     }
 }
+
+module.exports = Ficha;
