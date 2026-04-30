@@ -6,6 +6,6 @@ exports.delete = (req, res) => {
 
 }
 
-exports.edit = (req, res) => {
-    
+exports.update = (req, res) => {
+
 }
