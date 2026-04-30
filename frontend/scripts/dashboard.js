@@ -9,5 +9,9 @@ function showSection(sectionToShow, sectionToHide) {
     sectionToHide.classList.add('hidden');
 }
 
-fichasSectionBtn.addEventListener('click', () => showSection(fichasSection, atendimentosSection));
-atendimentosSectionBtn.addEventListener('click', () => showSection(atendimentosSection, fichasSection));
+fichasSectionBtn.addEventListener('click', () => {
+    showSection(fichasSection, atendimentosSection);
+});
+atendimentosSectionBtn.addEventListener('click', () => {
+    showSection(atendimentosSection, fichasSection);
+});
