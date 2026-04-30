@@ -1,25 +1,13 @@
-// ========== BUTTON TOOLTIPS ==========
-const viewBtns = document.querySelectorAll(".view-btn");
-const editBtns = document.querySelectorAll(".edit-btn");
-const deleteBtns = document.querySelectorAll(".delete-btn");
+// ===== SHOW SECTIONS BUTTONS =====
+const fichasSectionBtn = document.getElementById("fichasSectionBtn");
+const atendimentosSectionBtn = document.getElementById("atendimentosSectionBtn");
+const fichasSection = document.getElementById("fichasSection");
+const atendimentosSection = document.getElementById("atendimentosSection");
 
-viewBtns.forEach(btn => {
-    tippy(btn, { content: 'Visualizar' });
-});
-editBtns.forEach(btn => {
-    tippy(btn, { content: 'Editar' });
-});
-deleteBtns.forEach(btn => {
-    tippy(btn, { content: 'Deletar' });
-});
+function showSection(sectionToShow, sectionToHide) {
+    sectionToShow.classList.remove('hidden');
+    sectionToHide.classList.add('hidden');
+}
 
-// ========== PHONE NUMBER FORMATTING ==========
-const phones = document.querySelectorAll('.tel');
-phones.forEach(phone => {
-    const digits = phone.textContent.replace(/\D/g, '');
-    if (digits.length === 11) {
-        phone.textContent = `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
-    } else if (digits.length === 10) {
-        phone.textContent = `(${digits.slice(0,2)}) ${digits.slice(2,6)}-${digits.slice(6)}`;
-    }
-});
+fichasSectionBtn.addEventListener('click', () => showSection(fichasSection, atendimentosSection));
+atendimentosSectionBtn.addEventListener('click', () => showSection(atendimentosSection, fichasSection));
