@@ -20,7 +20,13 @@ exports.register = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
+    if (!req.params.id) return res.redirect('/error');
 
+    const ficha = await Ficha.delete(req.params.id);
+    if (!ficha) return res.render('/error');
+
+    req.session.save(() => res.redirect('/dashboard'));
+    return;
 }
 
 exports.update = async (req, res) => {
