@@ -20,6 +20,10 @@ class Ficha {
         this.ficha = null;
     }
 
+    static async getAll() {
+        return await FichaModel.find().sort({ _id: -1 });
+    }
+
     async register() {
         this.valida();
         if (this.errors.length > 0) return;
@@ -39,6 +43,7 @@ class Ficha {
 
     cleanUp() {
         this.body = {
+            _id: this.body._id || null,
             nome: this.body.nome || "",
             data_nascimento: this.body.data_nascimento || null,
             profissao: this.body.profissao || "",

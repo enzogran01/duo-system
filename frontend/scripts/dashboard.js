@@ -15,3 +15,22 @@ fichasSectionBtn.addEventListener('click', () => {
 atendimentosSectionBtn.addEventListener('click', () => {
     showSection(atendimentosSection, fichasSection);
 });
+
+// ===== SEARCH FUNCTIONALITY =====
+const searchInput = document.getElementById("searchPaciente");
+const fichaCards = document.querySelectorAll('[data-nome]');
+
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    
+    fichaCards.forEach(card => {
+        const nome = card.dataset.nome;
+        const telefone = card.dataset.telefone;
+        
+        if (nome.includes(searchTerm) || telefone.includes(searchTerm)) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});

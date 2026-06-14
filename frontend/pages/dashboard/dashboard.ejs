@@ -13,8 +13,34 @@
         </nav>
 
         <!-- Fichas - visível por padrão -->
-        <section id="fichasSection" class="p-6 md:p-16" data-aos="fade-right" data-aos-offset="10" data-aos-delay="10000" data-aos-duration="1000">
-            <h1 class="text-xl font-bold">Fichas de pacientes</h1>
+        <section id="fichasSection" class="w-full p-6 md:p-16" data-aos="fade-right" data-aos-offset="10" data-aos-delay="10000" data-aos-duration="1000">
+            <div class="w-full mb-6 flex items-center justify-between">
+                <h1 class="text-xl">Fichas de pacientes</h1>
+                <input 
+                    type="text" 
+                    id="searchPaciente" 
+                    placeholder="Buscar por nome ou telefone..." 
+                    class="w-[60%] bg-white px-4 py-2 rounded-lg transition-all focus:outline-none focus:ring-1 focus:ring-action"
+                />
+                <button class="text-white bg-action rounded-sm py-2 px-3 sm:py-4 sm:px-6 border cursor-pointer transition-all hover:-translate-y-1">Adicionar ficha</button>
+            </div>
+
+            <section class="grid grid-cols-1 gap-1 sm:grid-cols-4 sm:gap-4">
+                <% if (fichas && fichas.length > 0) { %>
+                <% fichas.forEach(ficha => { %>
+                    <div class="flex flex-col w-full p-4 rounded-xl bg-white" data-nome="<%= ficha.nome %>" data-telefone="<%= ficha.telefone %>">
+                        <div class="flex flex-col w-full">
+                            <p class="font-bold text-lg mb-2"><%= ficha.nome %></p>
+                            <p class="text-sm text-gray-500"><%= ficha.telefone %></p>
+                            <p class="text-sm text-gray-500 mb-1"><%= ficha.profissao %></p>
+                            <button class="w-full rounded bg-action text-white py-2 px-4 mt-2 transition-all cursor-pointer hover:-translate-y-0.5">Ver detalhes</button>
+                        </div>
+                    </div>
+                <% }) %>
+                <% } else { %>
+                    <p>Nenhuma ficha cadastrada por enquanto.</p>
+                <% } %>
+            </section>
         </section>
 
         <!-- Atendimentos - escondida por padrão -->
