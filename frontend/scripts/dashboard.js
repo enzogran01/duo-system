@@ -21,13 +21,14 @@ const searchInput = document.getElementById("searchPaciente");
 const fichaCards = document.querySelectorAll('[data-nome]');
 
 searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
+    const searchTerm = e.target.value.toLowerCase().trim();
     
     fichaCards.forEach(card => {
-        const nome = card.dataset.nome;
-        const telefone = card.dataset.telefone;
-        
-        if (nome.includes(searchTerm) || telefone.includes(searchTerm)) {
+        const nome = card.dataset.nome.toLowerCase();
+        const telefone = card.dataset.telefone.toLowerCase();
+        const profissao = card.dataset.profissao.toLowerCase();
+
+        if (nome.includes(searchTerm) || telefone.includes(searchTerm) || profissao.includes(searchTerm)) {
             card.style.display = 'flex';
         } else {
             card.style.display = 'none';

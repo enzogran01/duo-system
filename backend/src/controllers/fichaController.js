@@ -1,5 +1,17 @@
 const Ficha = require('../models/FichaModel');
 
+exports.get = async (req, res) => {
+    try {
+        const ficha = await Ficha.findById(req.params.id);
+        if (!ficha) return res.redirect('/error');
+
+        res.render('ficha', { ficha });
+    } catch (e) {
+        console.error(e);
+        return res.redirect('/error');
+    }
+}
+
 exports.register = async (req, res) => {
     try {
         const ficha = new Ficha(req.body);
