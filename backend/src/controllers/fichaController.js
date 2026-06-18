@@ -5,7 +5,12 @@ exports.get = async (req, res) => {
         const ficha = await Ficha.findById(req.params.id);
         if (!ficha) return res.redirect('/error');
 
-        res.render('ficha/ficha', { ficha, pageTitle: ` | Ficha de ${ficha.nome}` });
+        res.render('ficha/ficha', { 
+            ficha, 
+            pageTitle: ` | Ficha de ${ficha.nome}`,
+            script: "ficha.js",
+            user: req.session.user,
+        });
     } catch (e) {
         console.error(e);
         return res.redirect('/error');
