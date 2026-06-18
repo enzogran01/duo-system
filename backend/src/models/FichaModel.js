@@ -24,6 +24,15 @@ class Ficha {
         return await FichaModel.find().sort({ _id: -1 });
     }
 
+    static async findById(id) {
+        if (typeof id !== "string") return null;
+        try {
+            return await FichaModel.findById(id);
+        } catch (e) {
+            return null;
+        }
+    }
+
     async register() {
         this.valida();
         if (this.errors.length > 0) return;

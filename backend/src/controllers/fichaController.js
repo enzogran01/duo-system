@@ -5,7 +5,7 @@ exports.get = async (req, res) => {
         const ficha = await Ficha.findById(req.params.id);
         if (!ficha) return res.redirect('/error');
 
-        res.render('ficha', { ficha });
+        res.render('ficha/ficha', { ficha, pageTitle: ` | Ficha de ${ficha.nome}` });
     } catch (e) {
         console.error(e);
         return res.redirect('/error');
