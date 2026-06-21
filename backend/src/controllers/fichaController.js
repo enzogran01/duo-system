@@ -3,17 +3,12 @@ const Ficha = require('../models/FichaModel');
 exports.get = async (req, res) => {
     try {
         const ficha = await Ficha.findById(req.params.id);
-        if (!ficha) return res.redirect('/error');
+        if (!ficha) return res.status(404).json({ erro: 'Ficha não encontrada' });
 
-        res.render('ficha/ficha', { 
-            ficha, 
-            pageTitle: ` | Ficha de ${ficha.nome}`,
-            script: "ficha.js",
-            user: req.session.user,
-        });
+        res.json(ficha);
     } catch (e) {
         console.error(e);
-        return res.redirect('/error');
+        return res.status(500).json({ erro: 'Erro ao buscar ficha' });
     }
 }
 
