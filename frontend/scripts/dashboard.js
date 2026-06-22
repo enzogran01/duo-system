@@ -35,3 +35,28 @@ searchInput.addEventListener('input', (e) => {
         }
     });
 });
+
+// ===== SHOW DETAILS FICHA BUTTON =====
+const detalhesFichaButtons = document.querySelectorAll('.detalhes-ficha');
+
+detalhesFichaButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+        const fichaCard = button.closest('[data-nome]');
+        const _id = fichaCard.dataset.id;
+
+        try {
+            const dados = await fetch(`http://localhost:3000/ficha/${_id}`);
+            
+            if (!dados.ok) {
+                const erro = await dados.text();
+                console.error('Resposta do servidor:', erro);
+                throw new Error(`Erro ${dados.status}: ${dados.statusText}`);
+            }
+            
+            const dadosJson = await dados.json();
+            console.log(dadosJson) //debug
+        } catch (error) {
+            console.error('Erro completo:', error);
+        }
+    });
+});
