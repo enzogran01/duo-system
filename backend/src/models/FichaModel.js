@@ -11,7 +11,7 @@ const FichaSchema = new mongoose.Schema({
     pele: { type: String }
 });
 
-const FichaModel = new mongoose.model('Ficha', FichaSchema);
+const FichaModel = mongoose.model('Ficha', FichaSchema);
 
 class Ficha {
     constructor(body) {
@@ -44,6 +44,13 @@ class Ficha {
         return await FichaModel.findOneAndDelete({ _id: id });
     }
 
+    async update(id) {
+        if (typeof id !== 'string') return;
+        this.valida();
+        if (this.errors.length > 0) return;
+        this.ficha = await FichaModel.findByIdAndUpdate(id, this.body, { new: true });
+    }
+
     valida() {
         this.cleanUp();
         if (!this.body.nome) this.errors.push("Nome é obrigatório.");
@@ -52,7 +59,6 @@ class Ficha {
 
     cleanUp() {
         this.body = {
-            _id: this.body._id || null,
             nome: this.body.nome || "",
             data_nascimento: this.body.data_nascimento || null,
             profissao: this.body.profissao || "",

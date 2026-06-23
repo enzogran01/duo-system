@@ -55,7 +55,7 @@
 
                     <div class="form-item flex flex-col">
                         <label for="data_nascimento">Data de nascimento</label>
-                        <input type="date" id="data_nascimento" name="data_nascimento" value="<%= ficha.data_nascimento %>" class="edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
+                        <input type="date" id="data_nascimento" name="data_nascimento" value="<%= ficha.data_nascimento ? new Date(ficha.data_nascimento).toISOString().split('T')[0] : '' %>" class="edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
                     </div>
 
                     <div class="form-item flex flex-col">
@@ -78,7 +78,7 @@
                         <input type="text" id="pele" name="pele" value="<%= ficha.pele %>" class="edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
                     </div>
 
-                    <button id="submitEditButton" class="bg-action text-white rounded p-4 cursor-pointer transition-all hover:-translate-y-0.5 w-fit disabled:bg-action/60 disabled:cursor-auto disabled:hover:translate-y-0" type="submit" disabled>Confirmar edição</button>
+                    <button id="submitEditButton" class="bg-action text-white rounded p-4 cursor-pointer transition-all w-full md:w-fit hover:-translate-y-0.5 disabled:bg-action/60 disabled:cursor-auto disabled:hover:translate-y-0" type="submit" disabled>Confirmar edição</button>
                 </form>
             </div>
         </section>

@@ -5,6 +5,8 @@ exports.get = async (req, res) => {
         const ficha = await Ficha.findById(req.params.id);
         if (!ficha) return res.redirect('/error');
 
+        console.log('data_nascimento bruto:', ficha.data_nascimento);
+        console.log('tipo:', typeof ficha.data_nascimento);
         res.render('ficha/ficha', { 
             ficha, 
             pageTitle: ` | Ficha de ${ficha.nome}`,
@@ -47,5 +49,21 @@ exports.delete = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
+    try {
+        if (!req.params.id) return res.redirect('/error');
+        const ficha = new Ficha(req.body);
+        await ficha.update(req.params.id);
 
+        if (ficha.errors.length > 0) {
+            req.session.errors = ficha.errors;
+            req.session.save(() => res.redirect("/dashboard"));
+            return;
+        }
+
+        req.session.save(() => res.redirect(`/ficha/${req.params.id}`));
+        return;
+    } catch (e) {
+        console.log(e);
+        res.redirect('/error');
+    }
 }
