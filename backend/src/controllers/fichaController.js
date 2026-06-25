@@ -4,9 +4,7 @@ exports.get = async (req, res) => {
     try {
         const ficha = await Ficha.findById(req.params.id);
         if (!ficha) return res.redirect('/error');
-
-        console.log('data_nascimento bruto:', ficha.data_nascimento);
-        console.log('tipo:', typeof ficha.data_nascimento);
+        
         res.render('ficha/ficha', { 
             ficha, 
             pageTitle: ` | Ficha de ${ficha.nome}`,
