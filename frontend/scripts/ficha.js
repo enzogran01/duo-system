@@ -1,11 +1,3 @@
-// ===== TIPPY CONFIG =====
-tippy('[data-tippy-content]', {
-        placement: 'top',
-        arrow: true,
-        delay: [100, 0],
-        followCursor: true
-});
-
 // ===== ENABLE/DISABLE INPUT EDIT =====
 
 const editFichaButton = document.getElementById("editFicha");

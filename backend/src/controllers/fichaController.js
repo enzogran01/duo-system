@@ -17,6 +17,25 @@ exports.get = async (req, res) => {
     }
 }
 
+exports.getNew = (req, res) => {
+    res.render('ficha/new', {
+        pageTitle: ' | Nova Ficha',
+        user: req.session.user,
+        script: 'newFicha.js',
+    });
+}
+
+exports.new = async (req, res) => {
+    try {
+        const ficha = new Ficha(req.body);
+        await ficha.register();
+        res.redirect(`/ficha/${ficha._id}`);
+    } catch (e) {
+        console.error(e);
+        res.redirect('/error');
+    }
+}
+
 exports.register = async (req, res) => {
     try {
         const ficha = new Ficha(req.body);

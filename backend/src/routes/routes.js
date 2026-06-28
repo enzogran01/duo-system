@@ -22,7 +22,8 @@ route.get('/logout', loginRequired, logoutController.index);
 
 // rotas de ficha
 route.post('/ficha', loginRequired, fichaController.register);
-// route.get('/ficha/new', loginRequired, fichaController.new);
+route.get('/ficha/new', loginRequired, fichaController.getNew);
+route.post('/ficha/new', loginRequired, fichaController.new);
 route.get('/ficha/:id', loginRequired, fichaController.get);
 route.get('/ficha/delete/:id', loginRequired, fichaController.delete);
 route.post('/ficha/edit/:id', loginRequired, fichaController.update);
