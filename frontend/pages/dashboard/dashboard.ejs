@@ -28,11 +28,11 @@
             <section class="grid grid-cols-1 gap-1 sm:grid-cols-4 sm:gap-4">
                 <% if (fichas && fichas.length > 0) { %>
                 <% fichas.forEach(ficha => { %>
-                    <div class="flex flex-col w-full p-4 rounded-xl bg-white" data-nome="<%= ficha.nome %>" data-telefone="<%= ficha.telefone %>" data-profissao="<%= ficha.profissao %>" data-id="<%= ficha._id %>">
+                    <div class="flex flex-col w-full p-4 rounded-xl bg-white" data-nome="<%= ficha.nome %>" data-telefone="<%= ficha.telefone %>" data-profissao="<%= ficha.profissao%>" data-id="<%= ficha._id %>">
                         <div class="flex flex-col w-full">
                             <p class="font-bold text-lg mb-2 truncate"><%= ficha.nome %></p>
                             <p class="text-sm text-gray-500"><%= ficha.telefone %></p>
-                            <p class="text-sm text-gray-500 mb-1"><%= ficha.profissao %></p>
+                            <p class="text-sm text-gray-500 mb-1"><%= ficha.profissao || "-----" %></p>
                             <a href="/ficha/<%= ficha._id %>" class="detalhes-ficha w-full rounded bg-action text-white py-2 px-4 mt-2 transition-all cursor-pointer hover:-translate-y-0.5">Ver detalhes</a>
                         </div>
                     </div>
