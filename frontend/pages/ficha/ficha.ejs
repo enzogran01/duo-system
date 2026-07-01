@@ -63,17 +63,17 @@
 
                     <div class="form-item flex flex-col">
                         <label for="peso">Peso (em kg)</label>
-                        <input type="number" id="peso" name="peso" value="<%= ficha.peso %>" class="edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
+                        <input type="text" inputmode="decimal" id="peso" name="peso" maxlength="7" value="<%= ficha.peso %>" class="number-input edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
                     </div>
 
                     <div class="form-item flex flex-col">
                         <label for="altura">Altura (em metros)</label>
-                        <input type="number" id="altura" name="altura" value="<%= ficha.altura %>" class="edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
+                        <input type="text" inputmode="decimal" id="altura" name="altura" maxlength="7" value="<%= ficha.altura %>" class="number-input edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
                     </div>
 
                     <div class="form-item flex flex-col">
                         <label for="medida">Medida (em cm)</label>
-                        <input type="number" id="medida" name="medida" value="<%= ficha.medida %>" class="edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
+                        <input type="text" inputmode="decimal" id="medida" name="medida" maxlength="7" value="<%= ficha.medida %>" class="number-input edit-input p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
                     </div>
 
                     <div class="form-item flex flex-col">

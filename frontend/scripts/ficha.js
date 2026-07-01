@@ -12,3 +12,11 @@ editFichaButton.addEventListener("click", () => {
     });
     toggleDisabledElement(submitEditButton);
 });
+
+// ===== VALIDATE INPUTS =====
+const numberInputs = document.querySelectorAll(".number-input");
+numberInputs.forEach(input => {
+    input.addEventListener("input", () => {
+        input.value = input.value.replace(/[^0-9.]/g, "");
+    });
+});

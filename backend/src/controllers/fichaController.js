@@ -25,17 +25,6 @@ exports.getNew = (req, res) => {
     });
 }
 
-exports.new = async (req, res) => {
-    try {
-        const ficha = new Ficha(req.body);
-        await ficha.register();
-        res.redirect(`/ficha/${ficha._id}`);
-    } catch (e) {
-        console.error(e);
-        res.redirect('/error');
-    }
-}
-
 exports.register = async (req, res) => {
     try {
         const ficha = new Ficha(req.body);
