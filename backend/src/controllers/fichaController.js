@@ -73,3 +73,7 @@ exports.update = async (req, res) => {
         res.redirect('/error');
     }
 }
+
+exports.downloadPDF = async (req, res) => {
+    
+}

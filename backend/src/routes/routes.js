@@ -24,6 +24,7 @@ route.get('/logout', loginRequired, logoutController.index);
 route.get('/ficha/new', loginRequired, fichaController.getNew);
 route.get('/ficha/:id', loginRequired, fichaController.get);
 route.get('/ficha/delete/:id', loginRequired, fichaController.delete);
+route.get('/ficha/download/:id', loginRequired, fichaController.downloadPDF);
 route.post('/ficha/new', loginRequired, fichaController.register);
 route.post('/ficha/edit/:id', loginRequired, fichaController.update);
 

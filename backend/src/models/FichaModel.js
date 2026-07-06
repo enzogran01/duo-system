@@ -33,22 +33,27 @@ class Ficha {
         }
     }
 
+    static async delete(id) {
+        if (typeof id !== "string") return;
+        return await FichaModel.findOneAndDelete({ _id: id });
+    }
+
     async register() {
         this.valida();
         if (this.errors.length > 0) return;
         this.ficha = await FichaModel.create(this.body);
     }
 
-    static async delete(id) {
-        if (typeof id !== "string") return;
-        return await FichaModel.findOneAndDelete({ _id: id });
-    }
 
     async update(id) {
         if (typeof id !== 'string') return;
         this.valida();
         if (this.errors.length > 0) return;
         this.ficha = await FichaModel.findByIdAndUpdate(id, this.body, { new: true });
+    }
+
+    async getAtendimentos() {
+        
     }
 
     valida() {
