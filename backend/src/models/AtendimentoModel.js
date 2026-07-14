@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const AtendimentoSchema = new mongoose.Schema({
+    ficha: { type: mongoose.Schema.Types.ObjectId, ref: "Ficha", required: true },
     data_atendimento: { type: Date, required: true },
     servico: { type: String, required: true },
     queixa: { type: String, required: true },

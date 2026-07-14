@@ -46,6 +46,22 @@
         <!-- Atendimentos - escondida por padrão -->
         <section id="atendimentosSection" class="hidden w-full p-6 md:p-16" data-aos-offset="10" data-aos-delay="10000" data-aos-duration="1000">
             <h1 class="text-xl font-bold">Atendimentos</h1>
+            <% if (atendimentos && atendimentos.length > 0) { %>
+                <section class="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-4">
+                    <% atendimentos.forEach(atendimento => { %>
+                        <div class="flex flex-col w-full p-4 rounded-xl bg-white" data-id="<%= atendimento._id %>">
+                            <div class="flex flex-col w-full">
+                                <p class="font-bold text-lg mb-2 truncate"><%= atendimento.servico %></p>
+                                <p class="text-sm text-gray-500"><%= atendimento.queixa %></p>
+                                <p class="text-sm text-gray-500 mb-1"><%= atendimento.profissional || "-----" %></p>
+                                <a href="/atendimento/<%= atendimento._id %>" class="detalhes-atendimento w-full rounded bg-action text-white py-2 px-4 mt-2 transition-all cursor-pointer hover:-translate-y-0.5">Ver detalhes</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </section>
+            <% } else { %>
+                <p class="flex w-full justify-center text-gray-500">Nenhum atendimento cadastrado por enquanto.</p>
+            <% } %>
         </section>
     </main>
 
