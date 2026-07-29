@@ -44,6 +44,9 @@ class Ficha {
         this.ficha = await FichaModel.create(this.body);
     }
 
+    static async getAtendimentos(fichaId) {
+        return await Atendimento.findByFicha(fichaId);
+    }
 
     async update(id) {
         if (typeof id !== 'string') return;

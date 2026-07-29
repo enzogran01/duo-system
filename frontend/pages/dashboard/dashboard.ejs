@@ -45,20 +45,60 @@
 
         <!-- Atendimentos - escondida por padrão -->
         <section id="atendimentosSection" class="hidden w-full p-6 md:p-16" data-aos-offset="10" data-aos-delay="10000" data-aos-duration="1000">
-            <h1 class="text-xl font-bold">Atendimentos</h1>
+            <h1 class="text-xl font-bold mb-4">Atendimentos</h1>
+
             <% if (atendimentos && atendimentos.length > 0) { %>
-                <section class="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-4">
-                    <% atendimentos.forEach(atendimento => { %>
-                        <div class="flex flex-col w-full p-4 rounded-xl bg-white" data-id="<%= atendimento._id %>">
-                            <div class="flex flex-col w-full">
-                                <p class="font-bold text-lg mb-2 truncate"><%= atendimento.servico %></p>
-                                <p class="text-sm text-gray-500"><%= atendimento.queixa %></p>
-                                <p class="text-sm text-gray-500 mb-1"><%= atendimento.profissional || "-----" %></p>
-                                <a href="/atendimento/<%= atendimento._id %>" class="detalhes-atendimento w-full rounded bg-action text-white py-2 px-4 mt-2 transition-all cursor-pointer hover:-translate-y-0.5">Ver detalhes</a>
-                            </div>
-                        </div>
-                    <% }) %>
-                </section>
+                <div class="flex flex-col sm:flex-row gap-3 mb-4">
+                    <input
+                        type="text"
+                        id="filtroBusca"
+                        placeholder="Buscar por serviço ou queixa..."
+                        class="w-full sm:w-64 rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                    />
+                </div>
+
+                <div class="w-full overflow-x-auto rounded-xl bg-white">
+                    <table id="tabelaAtendimentos" class="w-full text-sm text-left">
+                        <thead>
+                            <tr class="border-b border-gray-200 text-gray-500">
+                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="servico">
+                                    Serviço <span class="sort-icon"></span>
+                                </th>
+                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="queixa">
+                                    Queixa <span class="sort-icon"></span>
+                                </th>
+                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="profissional">
+                                    Profissional <span class="sort-icon"></span>
+                                </th>
+                                <th class="px-4 py-3"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% atendimentos.forEach(atendimento => { %>
+                                <tr
+                                    class="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors"
+                                    data-id="<%= atendimento._id %>"
+                                    data-servico="<%= atendimento.servico %>"
+                                    data-queixa="<%= atendimento.queixa %>"
+                                    data-profissional="<%= atendimento.profissional || '-----' %>"
+                                >
+                                    <td class="px-4 py-3 font-bold truncate max-w-50"><%= atendimento.servico %></td> 
+                                    <td class="px-4 py-3 text-gray-500 truncate max-w-62.5"><%= atendimento.queixa %></td>
+                                    <td class="px-4 py-3 text-gray-500"><%= atendimento.profissional || "-----" %></td>
+                                    <td class="px-4 py-3 text-right">
+                                        <a href="/atendimento/<%= atendimento._id %>" class="detalhes-atendimento inline-block rounded bg-action text-white py-1.5 px-3 transition-all cursor-pointer hover:-translate-y-0.5 whitespace-nowrap">
+                                            Ver detalhes
+                                        </a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p id="semResultados" class="hidden w-full justify-center text-gray-500 py-6 text-center">
+                    Nenhum atendimento encontrado com esse filtro.
+                </p>
             <% } else { %>
                 <p class="flex w-full justify-center text-gray-500">Nenhum atendimento cadastrado por enquanto.</p>
             <% } %>

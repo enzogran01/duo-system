@@ -26,10 +26,15 @@ class Atendimento {
     static async findById(id) {
         if (typeof id !== "string") return null;
         try {
-            return await AtendimentoModel.findById(id);
+            return await AtendimentoModel.findById(id).populate("ficha");
         } catch (e) {
             return null;
         }
+    }
+
+    static async findByFicha(fichaId) {
+        if (typeof fichaId !== "string") return [];
+       return await AtendimentoModel.find({ ficha: fichaId }).sort({ data_atendimento: -1 });
     }
 
     static async delete(id) {
@@ -52,6 +57,7 @@ class Atendimento {
 
     valida() {
         this.cleanUp();
+        if (!this.body.ficha) this.errors.push("Ficha é obrigatória.");
         if (!this.body.data_atendimento) this.errors.push("Data do atendimento é obrigatória.");
         if (!this.body.servico) this.errors.push("Serviço é obrigatório.");
         if (!this.body.queixa) this.errors.push("Queixa é obrigatório.");
@@ -62,6 +68,7 @@ class Atendimento {
 
     cleanUp() {
         this.body = {
+            ficha: this.body.ficha || null,
             data_atendimento: this.body.data_atendimento || null,
             servico: this.body.servico,
             queixa: this.body.queixa,
