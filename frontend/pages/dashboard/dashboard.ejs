@@ -10,6 +10,15 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="ml-6 mr-4" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M18.63 7.15c.04.61-.01 1.3-.13 2.07l-.73 4.69c-.62 3.91-2.43 5.23-6.34 4.62l-4.69-.74c-1.35-.21-2.39-.57-3.15-1.11-1.45-1.01-1.87-2.67-1.47-5.23l.74-4.69c.62-3.91 2.43-5.23 6.34-4.62l4.69.74c3.14.49 4.61 1.77 4.74 4.27Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20.5 13.47 19 17.98c-1.25 3.76-3.25 4.76-7.01 3.51l-4.51-1.5c-2.27-.75-3.53-1.79-3.89-3.31.76.54 1.8.9 3.15 1.11l4.69.74c3.91.61 5.72-.71 6.34-4.62l.73-4.69c.12-.77.17-1.46.13-2.07 2.39 1.27 2.91 3.19 1.87 6.32ZM8.24 8.98a1.74 1.74 0 1 0 0-3.48 1.74 1.74 0 0 0 0 3.48Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 <p class="text-action cursor-pointer text-left">Atendimentos</p>
             </button>
+            <button id="calendarioSectionBtn" class="flex py-2 sm:py-0 items-center outline-none justify-start w-full md:min-h-15 cursor-pointer hover:bg-black/10 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ml-6 mr-4" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <p class="text-action cursor-pointer text-left">Calendário</p>
+            </button>
         </nav>
 
         <!-- Fichas - visível por padrão -->
@@ -45,30 +54,36 @@
 
         <!-- Atendimentos - escondida por padrão -->
         <section id="atendimentosSection" class="hidden w-full p-6 md:p-16" data-aos-offset="10" data-aos-delay="10000" data-aos-duration="1000">
-            <h1 class="text-xl font-bold mb-4">Atendimentos</h1>
+            <div class="w-full mb-6 flex flex-col sm:flex-row items-center justify-between">
+                <h1 class="text-xl mb-2 sm:mb-0">Atendimentos</h1>
+                <input 
+                    type="text" 
+                    id="searchAtendimento" 
+                    placeholder="Buscar por serviço, queixa ou profissional..." 
+                    class="w-full lg:w-[60%] mb-2 sm:mb-0 bg-white px-4 py-2 rounded-lg transition-all focus:outline-none focus:ring-1 focus:ring-action"
+                />
+                <a href="/atendimento/new" class="text-white w-full sm:w-auto bg-action rounded-sm py-2 px-3 sm:py-4 sm:px-6 border cursor-pointer transition-all hover:-translate-y-1">Adicionar atendimento</a>
+            </div>
 
             <% if (atendimentos && atendimentos.length > 0) { %>
-                <div class="flex flex-col sm:flex-row gap-3 mb-4">
-                    <input
-                        type="text"
-                        id="filtroBusca"
-                        placeholder="Buscar por serviço ou queixa..."
-                        class="w-full sm:w-64 rounded-lg border border-gray-300 px-3 py-2 text-sm"
-                    />
-                </div>
-
                 <div class="w-full overflow-x-auto rounded-xl bg-white">
                     <table id="tabelaAtendimentos" class="w-full text-sm text-left">
                         <thead>
                             <tr class="border-b border-gray-200 text-gray-500">
-                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="servico">
-                                    Serviço <span class="sort-icon"></span>
+                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="nome">
+                                    Cliente
                                 </th>
-                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="queixa">
-                                    Queixa <span class="sort-icon"></span>
+                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="data_atendimento">
+                                    Data
+                                </th>
+                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="horario">
+                                    Horário
+                                </th>
+                                <th class="px-4 py-3 cursor-pointer select-none" data-sort="servico">
+                                    Serviço
                                 </th>
                                 <th class="px-4 py-3 cursor-pointer select-none" data-sort="profissional">
-                                    Profissional <span class="sort-icon"></span>
+                                    Profissional
                                 </th>
                                 <th class="px-4 py-3"></th>
                             </tr>
@@ -76,15 +91,19 @@
                         <tbody>
                             <% atendimentos.forEach(atendimento => { %>
                                 <tr
-                                    class="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors"
+                                    class="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-all"
                                     data-id="<%= atendimento._id %>"
+                                    data-cliente="<%= atendimento.ficha.nome %>"
+                                    data-data_atendimento="<%= atendimento.data_atendimento %>"
+                                    data-horario="<%= atendimento.horario %>"
                                     data-servico="<%= atendimento.servico %>"
-                                    data-queixa="<%= atendimento.queixa %>"
                                     data-profissional="<%= atendimento.profissional || '-----' %>"
                                 >
-                                    <td class="px-4 py-3 font-bold truncate max-w-50"><%= atendimento.servico %></td> 
-                                    <td class="px-4 py-3 text-gray-500 truncate max-w-62.5"><%= atendimento.queixa %></td>
-                                    <td class="px-4 py-3 text-gray-500"><%= atendimento.profissional || "-----" %></td>
+                                    <td class="px-4 py-3 truncate max-w-50"> <%= atendimento.ficha.nome %></td> 
+                                    <td class="px-4 py-3 truncate max-w-50"><%= atendimento.data_atendimento.toISOString().split('T')[0] %></td> 
+                                    <td class="px-4 py-3 truncate max-w-50"><%= atendimento.horario %></td> 
+                                    <td class="px-4 py-3 truncate max-w-50"><%= atendimento.servico %></td> 
+                                    <td class="px-4 py-3"><%= atendimento.profissional || "-----" %></td>
                                     <td class="px-4 py-3 text-right">
                                         <a href="/atendimento/<%= atendimento._id %>" class="detalhes-atendimento inline-block rounded bg-action text-white py-1.5 px-3 transition-all cursor-pointer hover:-translate-y-0.5 whitespace-nowrap">
                                             Ver detalhes
@@ -96,6 +115,13 @@
                     </table>
                 </div>
 
+                <!-- Paginação -->
+                <div id="paginacaoAtendimentos" class="w-full flex justify-end items-center mt-4 gap-4 hidden">
+                    <button id="btnAnteriorAtendimentos" class="px-4 py-2 bg-white text-action border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Anterior</button>
+                    <span id="infoPaginaAtendimentos" class="text-sm text-gray-600 font-medium">Página 1 de 1</span>
+                    <button id="btnProximoAtendimentos" class="px-4 py-2 bg-action text-white rounded-lg hover:bg-action/90 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Próxima</button>
+                </div>
+
                 <p id="semResultados" class="hidden w-full justify-center text-gray-500 py-6 text-center">
                     Nenhum atendimento encontrado com esse filtro.
                 </p>
@@ -103,6 +129,59 @@
                 <p class="flex w-full justify-center text-gray-500">Nenhum atendimento cadastrado por enquanto.</p>
             <% } %>
         </section>
+
+        <!-- Calendário - escondida por padrão -->
+        <section id="calendarioSection" class="hidden w-full p-6 md:p-16 flex-col" data-aos-offset="10" data-aos-delay="10000" data-aos-duration="1000">
+            <div class="w-full mb-6 flex flex-col sm:flex-row items-center justify-between">
+                <h1 class="text-xl mb-4 sm:mb-0">Calendário de Atendimentos</h1>
+                <div class="flex items-center gap-4">
+                    <button id="prevMonth" class="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <h2 id="currentMonthLabel" class="text-lg font-medium w-40 text-center capitalize">Mês Ano</h2>
+                    <button id="nextMonth" class="p-2 bg-white rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6 overflow-hidden">
+                <!-- Dias da semana -->
+                <div class="grid grid-cols-7 gap-px mb-2 text-center text-sm font-semibold text-gray-500">
+                    <div class="hidden sm:block">Domingo</div><div class="sm:hidden">Dom</div>
+                    <div class="hidden sm:block">Segunda</div><div class="sm:hidden">Seg</div>
+                    <div class="hidden sm:block">Terça</div><div class="sm:hidden">Ter</div>
+                    <div class="hidden sm:block">Quarta</div><div class="sm:hidden">Qua</div>
+                    <div class="hidden sm:block">Quinta</div><div class="sm:hidden">Qui</div>
+                    <div class="hidden sm:block">Sexta</div><div class="sm:hidden">Sex</div>
+                    <div class="hidden sm:block">Sábado</div><div class="sm:hidden">Sáb</div>
+                </div>
+                <!-- Grid de dias -->
+                <div id="calendarGrid" class="grid grid-cols-7 gap-2 auto-rows-fr">
+                    <!-- Os dias serão gerados via Javascript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal de Detalhes do Dia -->
+        <div id="dayModal" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl w-full max-w-lg shadow-xl overflow-hidden flex flex-col max-h-[80vh]">
+                <div class="p-4 border-b flex justify-between items-center bg-gray-50">
+                    <h3 id="dayModalTitle" class="font-bold text-lg">Atendimentos do dia</h3>
+                    <button id="closeDayModal" class="text-gray-500 hover:text-black cursor-pointer transition-colors">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div id="dayModalContent" class="p-4 overflow-y-auto flex-1 flex flex-col gap-3">
+                    <!-- Detalhes injetados via Javascript -->
+                </div>
+            </div>
+        </div>
+
     </main>
+
+<script>
+    window.atendimentosData = <%- JSON.stringify(atendimentos || []) %>;
+</script>
 
 <%- include('../includes/footer') %>

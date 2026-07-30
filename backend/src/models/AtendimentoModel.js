@@ -7,7 +7,8 @@ const AtendimentoSchema = new mongoose.Schema({
     queixa: { type: String, required: true },
     rotina_diaria: { type: String, required: true },
     prescricao: { type: String, required: true },
-    profissional: { type: String, required: true }
+    profissional: { type: String, required: true },
+    horario: { type: String, required: true }
 });
 
 const AtendimentoModel = mongoose.model('Atendimento', AtendimentoSchema);
@@ -20,7 +21,7 @@ class Atendimento {
     }
 
     static async getAll() {
-        return await AtendimentoModel.find().sort({ _id: -1 });
+        return await AtendimentoModel.find().sort({ _id: -1 }).populate("ficha");
     }
 
     static async findById(id) {
@@ -64,6 +65,7 @@ class Atendimento {
         if (!this.body.rotina_diaria) this.errors.push("Rotina diária é obrigatório.");
         if (!this.body.prescricao) this.errors.push("Prescrição é obrigatório.");
         if (!this.body.profissional) this.errors.push("Profissional é obrigatório.");
+        if (!this.body.horario) this.errors.push("Horário é obrigatório.");
     }
 
     cleanUp() {
@@ -74,7 +76,8 @@ class Atendimento {
             queixa: this.body.queixa,
             rotina_diaria: this.body.rotina_diaria,
             prescricao: this.body.prescricao,
-            profissional: this.body.profissional
+            profissional: this.body.profissional,
+            horario: this.body.horario
         };
     }
 }
