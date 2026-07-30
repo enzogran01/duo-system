@@ -32,6 +32,7 @@ route.post('/ficha/edit/:id', loginRequired, fichaController.update);
 // rotas de atendimento
 route.get('/atendimento/new', loginRequired, atendimentoController.getNew);
 route.get('/atendimento/:id', loginRequired, atendimentoController.get);
+route.get('/atendimento/download/:id', loginRequired, atendimentoController.downloadPDF);
 route.post('/atendimento/edit/:id', loginRequired, atendimentoController.update);
 route.get('/atendimento/delete/:id', loginRequired, atendimentoController.delete);
 route.post('/atendimento/new', loginRequired, atendimentoController.register);
