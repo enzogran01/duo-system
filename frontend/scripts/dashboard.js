@@ -110,11 +110,13 @@ if (searchAtendimentoInput) {
         const searchTerm = e.target.value.toLowerCase().trim();
         
         linhasFiltradas = atendimentosRows.filter(row => {
+            const cliente = (row.dataset.cliente || '').toLowerCase();
+            const data_atendimento = (row.dataset.data_atendimento || '').toLowerCase();
             const servico = (row.dataset.servico || '').toLowerCase();
             const queixa = (row.dataset.queixa || '').toLowerCase();
             const profissional = (row.dataset.profissional || '').toLowerCase();
 
-            return servico.includes(searchTerm) || queixa.includes(searchTerm) || profissional.includes(searchTerm);
+            return data_atendimento.includes(searchTerm) || cliente.includes(searchTerm) || servico.includes(searchTerm) || queixa.includes(searchTerm) || profissional.includes(searchTerm);
         });
 
         paginaAtual = 1; // Volta para a primeira página ao pesquisar

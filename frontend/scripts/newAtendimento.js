@@ -14,9 +14,6 @@ const verifyRequiredFields = () => {
     return fichaInput.value.trim().length > 0 && 
            dataAtendimentoInput.value.trim().length > 0 &&
            servicoInput.value.trim().length > 0 &&
-           queixaInput.value.trim().length > 0 &&
-           rotinaDiariaInput.value.trim().length > 0 &&
-           prescricaoInput.value.trim().length > 0 &&
            profissionalInput.value.trim().length > 0 &&
            horarioInput.value.trim().length > 0;
 };

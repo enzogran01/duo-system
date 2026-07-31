@@ -4,9 +4,9 @@ const AtendimentoSchema = new mongoose.Schema({
     ficha: { type: mongoose.Schema.Types.ObjectId, ref: "Ficha", required: true },
     data_atendimento: { type: Date, required: true },
     servico: { type: String, required: true },
-    queixa: { type: String, required: true },
-    rotina_diaria: { type: String, required: true },
-    prescricao: { type: String, required: true },
+    queixa: { type: String, required: false },
+    rotina_diaria: { type: String, required: false },
+    prescricao: { type: String, required: false },
     profissional: { type: String, required: true },
     horario: { type: String, required: true }
 });
@@ -61,9 +61,6 @@ class Atendimento {
         if (!this.body.ficha) this.errors.push("Ficha é obrigatória.");
         if (!this.body.data_atendimento) this.errors.push("Data do atendimento é obrigatória.");
         if (!this.body.servico) this.errors.push("Serviço é obrigatório.");
-        if (!this.body.queixa) this.errors.push("Queixa é obrigatório.");
-        if (!this.body.rotina_diaria) this.errors.push("Rotina diária é obrigatório.");
-        if (!this.body.prescricao) this.errors.push("Prescrição é obrigatório.");
         if (!this.body.profissional) this.errors.push("Profissional é obrigatório.");
         if (!this.body.horario) this.errors.push("Horário é obrigatório.");
     }
