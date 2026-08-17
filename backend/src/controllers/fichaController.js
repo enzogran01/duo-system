@@ -90,7 +90,7 @@ exports.downloadPDF = async (req, res) => {
         doc.pipe(res);
 
         // Header
-        doc.fontSize(20).text('Relatório de Atendimento', { align: 'center' });
+        doc.fontSize(20).text(`Ficha de ${ficha.nome}`, { align: 'center' });
         doc.moveDown(2);
 
         // Body
