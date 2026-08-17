@@ -7,7 +7,7 @@ const FichaSchema = new mongoose.Schema({
     telefone: { type: String, required: true },
     peso: { type: Number },
     altura: { type: Number },
-    medida: { type: Number },
+    medida: { type: String },
     pele: { type: String }
 });
 
