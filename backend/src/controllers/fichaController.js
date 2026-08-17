@@ -38,7 +38,7 @@ exports.register = async (req, res) => {
         }
 
         req.session.errors = [];
-        return;
+        req.session.save(() => res.redirect("/dashboard"));
     } catch (e) {
         console.error(e);
         return res.redirect('/error');
