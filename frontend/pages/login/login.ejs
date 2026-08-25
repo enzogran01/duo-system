@@ -13,6 +13,7 @@
             <% } %>
 
             <form id="formLogin" action="/" method="POST" class="w-full">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="mt-8 input-div">
                     <input placeholder="Seu email" autofocus type="email" name="email" id="email" required class="w-full border-b rounded-t px-3 py-2 outline-none focus:bg-neutral">
                 </div>

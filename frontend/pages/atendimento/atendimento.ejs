@@ -41,6 +41,7 @@
                 <h2 class="font-bold text-xl border-b pb-1 mb-4">Dados do atendimento</h2>
 
                 <form method="POST" action="/atendimento/edit/<%= atendimento._id %>" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <div class="form-item flex flex-col md:col-span-2">
                         <label for="nome">Nome do paciente</label>
                         <input type="text" id="nome" value="<%= atendimento.ficha.nome %>" class="p-2 rounded-t border-b transition-all disabled:bg-neutral disabled:text-action/60 focus:outline-none focus:bg-neutral" disabled>
