@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tailwindcss/cli": "^4.2.2"
+    "@popperjs/core": "^2.11.8",
+    "@tailwindcss/cli": "^4.2.2",
+    "aos": "^2.3.4",
+    "tippy.js": "^6.3.7"
   }
 }
