@@ -5,7 +5,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const csurf = require('csurf');
-const { checkCsrfError, csrfMiddleware } = require('./middlewares/middleware');
+const { checkCsrfError, csrfMiddleware, messagesMiddleware } = require('./middlewares/middleware');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../../frontend/pages'));
 
@@ -31,6 +31,7 @@ app.use(flash());
 app.use(csurf());
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
+app.use(messagesMiddleware);
 
 // rotas
 const route = require('./routes/routes');

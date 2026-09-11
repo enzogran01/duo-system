@@ -51,12 +51,11 @@ module.exports.register = async (req, res) => {
         await atendimento.register();
 
         if (atendimento.errors.length > 0) {
-            req.session.errors = atendimento.errors;
+            req.flash('errors', atendimento.errors);
             req.session.save(() => res.redirect("/dashboard"));
             return;
         }
 
-        req.session.errors = [];
         req.session.save(() => res.redirect("/dashboard"));
         return;
     } catch (e) {
@@ -72,7 +71,7 @@ module.exports.update = async (req, res) => {
         await atendimento.update(req.params.id);
 
         if (atendimento.errors.length > 0) {
-            req.session.errors = atendimento.errors;
+            req.flash('errors', atendimento.errors);
             req.session.save(() => res.redirect(`/atendimento/${req.params.id}`));
             return;
         }

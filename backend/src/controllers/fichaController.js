@@ -32,12 +32,11 @@ exports.register = async (req, res) => {
         await ficha.register();
 
         if (ficha.errors.length > 0) {
-            req.session.errors = ficha.errors;
+            req.flash('errors', ficha.errors);
             req.session.save(() => res.redirect("/dashboard"));
             return;
         }
 
-        req.session.errors = [];
         req.session.save(() => res.redirect("/dashboard"));
     } catch (e) {
         console.error(e);
@@ -62,7 +61,7 @@ exports.update = async (req, res) => {
         await ficha.update(req.params.id);
 
         if (ficha.errors.length > 0) {
-            req.session.errors = ficha.errors;
+            req.flash('errors', ficha.errors);
             req.session.save(() => res.redirect("/dashboard"));
             return;
         }

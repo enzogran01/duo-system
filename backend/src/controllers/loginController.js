@@ -6,12 +6,11 @@ exports.login = async (req, res) => {
         await login.login();
     
         if(login.errors.length > 0) {
-            req.session.loginErrors = login.errors;
+            req.flash('errors', login.errors);
             req.session.save(() => res.redirect("/"));
             return;
         }
 
-        req.session.loginErrors = [];
         req.session.user = login.user;
         req.session.save(() => res.redirect("/dashboard"));
     } catch (e) {
@@ -23,7 +22,5 @@ exports.login = async (req, res) => {
 exports.index = (req, res) => {
     if (req.session.user) return res.redirect('/dashboard');
     
-    const errors = req.session.loginErrors || [];
-    req.session.loginErrors = [];
-    res.render('login/login', { pageTitle: " | Login", script: "login.js", errors, user: null });
+    res.render('login/login', { pageTitle: " | Login", script: "login.js", user: null });
 }
