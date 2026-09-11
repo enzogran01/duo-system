@@ -100,7 +100,7 @@
                                     data-profissional="<%= atendimento.profissional || '-----' %>"
                                 >
                                     <td class="px-4 py-3 truncate max-w-50"> <%= atendimento.ficha.nome %></td> 
-                                    <td class="px-4 py-3 truncate max-w-50"><%= atendimento.data_atendimento.toISOString().split('T')[0] %></td> 
+                                    <td class="px-4 py-3 truncate max-w-50"><%= atendimento.data_atendimento.toISOString().split('T')[0].split('-').reverse().join('-') %></td> 
                                     <td class="px-4 py-3 truncate max-w-50"><%= atendimento.horario %></td> 
                                     <td class="px-4 py-3 truncate max-w-50"><%= atendimento.servico %></td> 
                                     <td class="px-4 py-3"><%= atendimento.profissional || "-----" %></td>
