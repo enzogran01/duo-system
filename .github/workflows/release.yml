@@ -1,0 +1,45 @@
+name: Release
+
+# Gera e publica uma nova versão sempre que uma tag "v*" for enviada (ex.: v1.0.1)
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Ajustar versão a partir da tag
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
+
+      - name: Criar .env do backend
+        shell: bash
+        run: echo "CONNECTIONSTRING=${{ secrets.CONNECTIONSTRING }}" > backend/src/.env
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Gerar CSS (Tailwind)
+        working-directory: frontend
+        run: npx @tailwindcss/cli -i ./styles/vendor/input.css -o ./styles/vendor/output.css
+
+      - name: Build e publicar no GitHub Releases
+        run: npm run release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

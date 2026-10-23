@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu, dialog, shell } = require('electron');
 const path = require('path');
+const { autoUpdater } = require('electron-updater');
 
 // Handle squirrel events for Windows installer
 if (require('electron-squirrel-startup')) app.quit();
@@ -110,13 +111,18 @@ function createWindow() {
       label: 'Ajuda',
       submenu: [
         {
+          label: 'Procurar Atualizações',
+          click: () => checkForUpdates(true),
+        },
+        { type: 'separator' },
+        {
           label: 'Sobre o Duo System',
           click: () => {
             dialog.showMessageBox(mainWindow, {
               type: 'info',
               title: 'Sobre',
               message: 'Duo System',
-              detail: 'Sistema de gestão exclusivo para Duo Estética.\nVersão 1.0.0\n\nDesenvolvido por Enzo Gran.',
+              detail: `Sistema de gestão exclusivo para Duo Estética.\nVersão ${app.getVersion()}\n\nDesenvolvido por Enzo Gran.`,
             });
           },
         },
@@ -194,8 +200,72 @@ function startServer() {
   }
 }
 
+// ===== Atualização automática (GitHub Releases) =====
+let manualUpdateCheck = false;
+
+function setupAutoUpdater() {
+  autoUpdater.autoDownload = true;
+  autoUpdater.autoInstallOnAppQuit = true;
+
+  autoUpdater.on('update-not-available', () => {
+    if (manualUpdateCheck && mainWindow) {
+      dialog.showMessageBox(mainWindow, {
+        type: 'info',
+        title: 'Atualizações',
+        message: `Você já está na versão mais recente (${app.getVersion()}).`,
+      });
+    }
+    manualUpdateCheck = false;
+  });
+
+  autoUpdater.on('update-downloaded', async (info) => {
+    manualUpdateCheck = false;
+    if (!mainWindow) return;
+    const { response } = await dialog.showMessageBox(mainWindow, {
+      type: 'info',
+      title: 'Atualização disponível',
+      message: `A versão ${info.version} do Duo System foi baixada.`,
+      detail: 'Deseja reiniciar agora para instalar? Se escolher "Depois", ela será instalada quando você fechar o aplicativo.',
+      buttons: ['Reiniciar agora', 'Depois'],
+      defaultId: 0,
+      cancelId: 1,
+    });
+    if (response === 0) autoUpdater.quitAndInstall();
+  });
+
+  autoUpdater.on('error', (err) => {
+    console.error('[Duo System] Erro na atualização:', err);
+    if (manualUpdateCheck && mainWindow) {
+      dialog.showErrorBox('Erro ao procurar atualizações', err?.message || String(err));
+    }
+    manualUpdateCheck = false;
+  });
+}
+
+function checkForUpdates(manual = false) {
+  if (!app.isPackaged) {
+    if (manual && mainWindow) {
+      dialog.showMessageBox(mainWindow, {
+        type: 'info',
+        title: 'Atualizações',
+        message: 'A atualização automática só funciona na versão instalada.',
+      });
+    }
+    return;
+  }
+  manualUpdateCheck = manual;
+  autoUpdater.checkForUpdates().catch((err) => {
+    console.error('[Duo System] Falha ao verificar atualizações:', err);
+  });
+}
+
 // App lifecycle
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  createWindow();
+  setupAutoUpdater();
+  // Aguarda alguns segundos para não competir com a inicialização do servidor
+  setTimeout(() => checkForUpdates(false), 5000);
+});
 
 app.on('window-all-closed', () => {
   app.quit();

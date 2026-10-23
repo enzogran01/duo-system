@@ -15,6 +15,13 @@ files:
 
 asar: true
 
+# Atualização automática via GitHub Releases
+publish:
+  provider: github
+  owner: enzogran01
+  repo: duo-system
+  releaseType: release
+
 win:
   target:
     - target: nsis
