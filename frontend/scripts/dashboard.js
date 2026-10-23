@@ -203,7 +203,7 @@ function renderCalendar(date) {
     // Renderiza blocos vazios para o inicio do mês
     for (let i = 0; i < firstDayIndex; i++) {
         const emptyDiv = document.createElement("div");
-        emptyDiv.className = "min-h-[80px] sm:min-h-[100px] border border-gray-100 rounded-lg bg-gray-50/50 hidden sm:block";
+        emptyDiv.className = "min-w-0 min-h-[70px] sm:min-h-[90px] lg:min-h-[100px] border border-gray-100 rounded-lg bg-gray-50/50 hidden sm:block";
         // Em telas pequenas, podemos omitir os blocos vazios se quisermos, mas como é grid, melhor deixar.
         emptyDiv.classList.remove('hidden', 'sm:block'); // Mantém pra estruturar o grid
         calendarGrid.appendChild(emptyDiv);
@@ -212,7 +212,7 @@ function renderCalendar(date) {
     // Renderiza os dias
     for (let i = 1; i <= lastDay; i++) {
         const dayDiv = document.createElement("div");
-        dayDiv.className = "min-h-[80px] sm:min-h-[100px] border border-gray-200 rounded-lg p-1 sm:p-2 flex flex-col bg-white transition-all hover:border-action/50 hover:shadow-sm cursor-pointer relative group overflow-hidden";
+        dayDiv.className = "min-w-0 min-h-[70px] sm:min-h-[90px] lg:min-h-[100px] border border-gray-200 rounded-lg p-1 sm:p-2 flex flex-col bg-white transition-all hover:border-action/50 hover:shadow-sm cursor-pointer relative group overflow-hidden";
         
         const dayNumber = document.createElement("span");
         dayNumber.className = "text-xs sm:text-sm font-medium text-gray-700 mb-1";
@@ -237,7 +237,7 @@ function renderCalendar(date) {
         
         if (dayAtendimentos.length > 0) {
             const badgesContainer = document.createElement("div");
-            badgesContainer.className = "flex flex-col gap-1 overflow-hidden mt-1 sm:mt-0";
+            badgesContainer.className = "flex flex-col gap-1 min-w-0 overflow-hidden mt-1 sm:mt-0";
             
             // Renderiza ate 2 badges para não estourar o layout
             const maxBadges = window.innerWidth < 640 ? 1 : 2; // Em telas muito pequenas mostra só 1 badge

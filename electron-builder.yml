@@ -1,0 +1,41 @@
+appId: com.duoestetica.duosystem
+productName: Duo System
+copyright: Copyright © 2026 Enzo Gran
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - "main.js"
+  - "preload.js"
+  - "backend/**/*"
+  - "frontend/**/*"
+  - "!**/node_modules/.cache/**"
+
+asar: true
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: "build/icon.ico"
+
+nsis:
+  oneClick: false
+  perMachine: true
+  allowToChangeInstallationDirectory: true
+  installerSidebar: null
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: "Duo System"
+
+# macOS config (caso precise no futuro)
+mac:
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  category: public.app-category.business

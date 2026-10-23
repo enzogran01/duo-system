@@ -1,0 +1,22 @@
+{
+  "name": "duo-system",
+  "version": "1.0.0",
+  "description": "Sistema de gestão de clientes e agendamentos para Duo Estética",
+  "main": "main.js",
+  "author": "Enzo Gran",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder --win",
+    "postinstall": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "electron-squirrel-startup": "^1.0.1"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.0"
+  }
+}
