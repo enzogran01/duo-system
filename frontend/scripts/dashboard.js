@@ -195,41 +195,39 @@ function renderCalendar(date) {
     const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
     currentMonthLabel.textContent = `${monthNames[month]} ${year}`;
     
-    // Primeiro dia do mês
+    // Primeiro dia do mês e quantidade de dias
     const firstDayIndex = new Date(year, month, 1).getDay();
-    // Quantidade de dias no mês
     const lastDay = new Date(year, month + 1, 0).getDate();
+    const totalRows = Math.ceil((firstDayIndex + lastDay) / 7);
     
-    // Renderiza blocos vazios para o inicio do mês
+    // Renderiza blocos vazios para o início do mês
     for (let i = 0; i < firstDayIndex; i++) {
         const emptyDiv = document.createElement("div");
-        emptyDiv.className = "min-w-0 min-h-[70px] sm:min-h-[90px] lg:min-h-[100px] border border-gray-100 rounded-lg bg-gray-50/50 hidden sm:block";
-        // Em telas pequenas, podemos omitir os blocos vazios se quisermos, mas como é grid, melhor deixar.
-        emptyDiv.classList.remove('hidden', 'sm:block'); // Mantém pra estruturar o grid
+        emptyDiv.className = "min-w-0 min-h-0 h-full border border-gray-100 rounded-lg bg-gray-50/50";
         calendarGrid.appendChild(emptyDiv);
     }
     
     // Renderiza os dias
     for (let i = 1; i <= lastDay; i++) {
         const dayDiv = document.createElement("div");
-        dayDiv.className = "min-w-0 min-h-[70px] sm:min-h-[90px] lg:min-h-[100px] border border-gray-200 rounded-lg p-1 sm:p-2 flex flex-col bg-white transition-all hover:border-action/50 hover:shadow-sm cursor-pointer relative group overflow-hidden";
+        dayDiv.className = "min-w-0 min-h-0 h-full border border-gray-200 rounded-lg p-1 sm:p-2 flex flex-col bg-white transition-all hover:border-action/50 hover:shadow-sm cursor-pointer relative group overflow-hidden";
         
         const dayNumber = document.createElement("span");
-        dayNumber.className = "text-xs sm:text-sm font-medium text-gray-700 mb-1";
+        dayNumber.className = "text-xs sm:text-sm font-medium text-gray-700 mb-0.5 shrink-0";
         dayNumber.textContent = i;
         dayDiv.appendChild(dayNumber);
         
         // Verifica se hoje é este dia para destacar
         const today = new Date();
         if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-            dayNumber.className = "text-xs sm:text-sm font-bold text-white bg-action w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center rounded-full mb-1";
+            dayNumber.className = "text-xs sm:text-sm font-bold text-white bg-action w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center rounded-full mb-0.5 shrink-0";
             dayDiv.classList.add("ring-1", "ring-action/30", "bg-blue-50/10");
         }
         
         // Encontra atendimentos para este dia
         const dayAtendimentos = atendimentosList.filter(atend => {
             if (!atend.data_atendimento) return false;
-            const dateStr = atend.data_atendimento.split('T')[0]; // ex: "2023-10-25"
+            const dateStr = atend.data_atendimento.split('T')[0];
             const [aYear, aMonth, aDay] = dateStr.split('-');
             
             return parseInt(aYear) === year && parseInt(aMonth) - 1 === month && parseInt(aDay) === i;
@@ -237,20 +235,20 @@ function renderCalendar(date) {
         
         if (dayAtendimentos.length > 0) {
             const badgesContainer = document.createElement("div");
-            badgesContainer.className = "flex flex-col gap-1 min-w-0 overflow-hidden mt-1 sm:mt-0";
+            badgesContainer.className = "flex flex-col gap-0.5 min-w-0 overflow-hidden mt-auto";
             
-            // Renderiza ate 2 badges para não estourar o layout
-            const maxBadges = window.innerWidth < 640 ? 1 : 2; // Em telas muito pequenas mostra só 1 badge
-            for(let j = 0; j < Math.min(dayAtendimentos.length, maxBadges); j++) {
+            // Mostra 1 badge se a tela for baixa/estreita ou se o mês tiver 6 semanas; caso contrário, mostra até 2
+            const maxBadges = (window.innerWidth < 640 || window.innerHeight < 860 || totalRows === 6) ? 1 : 2;
+            for (let j = 0; j < Math.min(dayAtendimentos.length, maxBadges); j++) {
                 const badge = document.createElement("div");
-                badge.className = "text-[10px] sm:text-xs px-1 sm:px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded truncate border border-blue-200 font-medium leading-tight";
+                badge.className = "text-[10px] sm:text-xs px-1 sm:px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded truncate border border-blue-200 font-medium leading-tight shrink-0";
                 badge.textContent = dayAtendimentos[j].ficha?.nome || 'Atendimento';
                 badgesContainer.appendChild(badge);
             }
             
             if (dayAtendimentos.length > maxBadges) {
                 const moreBadge = document.createElement("div");
-                moreBadge.className = "text-[10px] sm:text-xs px-1 text-gray-500 font-medium";
+                moreBadge.className = "text-[10px] px-1 text-gray-500 font-medium leading-tight truncate shrink-0";
                 moreBadge.textContent = `+${dayAtendimentos.length - maxBadges} mais`;
                 badgesContainer.appendChild(moreBadge);
             }

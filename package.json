@@ -8,8 +8,8 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron . --dev",
-    "build": "electron-builder --win --publish never",
-    "release": "electron-builder --win --publish always",
+    "build": "npx rimraf dist && electron-builder --win --publish never",
+    "release": "npx rimraf dist && electron-builder --win --publish always",
     "postinstall": "cd backend && npm install && cd ../frontend && npm install"
   },
   "dependencies": {

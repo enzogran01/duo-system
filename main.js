@@ -128,6 +128,11 @@ function createWindow() {
         },
       ],
     },
+    {
+      label: 'Inspecionar (DevTools)', accelerator: 'CmdOrCtrl+Shift+I', role: 'toggleDevTools'
+    },
+    { label: 'Forçar Recarregamento', accelerator: 'CmdOrCtrl+Shift+R', role: 'forceReload' },
+
   ];
 
   const menu = Menu.buildFromTemplate(menuTemplate);
@@ -143,7 +148,7 @@ function startServer() {
     const dotenv = require('dotenv');
     const envPath = path.join(__dirname, 'backend', 'src', '.env');
     const envResult = dotenv.config({ path: envPath });
-    
+
     if (!process.env.CONNECTIONSTRING) {
       console.log('Dotenv failed to set CONNECTIONSTRING, trying manual parse...');
       const fs = require('fs');

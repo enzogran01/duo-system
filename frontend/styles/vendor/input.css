@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @source "../../pages/**/*.ejs";
+@source "../../scripts/**/*.js";
 
 @font-face {
   font-family: "Bebas";
